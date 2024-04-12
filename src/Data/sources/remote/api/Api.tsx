@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-    baseURL: 'http://192.168.56.1:3000/api',
+    baseURL: 'https://api-mongodb-9be7.onrender.com/api',
     headers:{
         'Content-Type': 'application/json'
     }

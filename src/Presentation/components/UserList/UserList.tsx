@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 
 interface User {
-    id: number;
+    _id: string;
     name: string;
     email: string;
 }
@@ -25,7 +25,7 @@ const UserList: React.FC<UserListProps> = ({users}) => {
         <FlatList 
         data={users}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item._id.toString()}
         />
     );
 };

@@ -6,7 +6,7 @@ import RegisterViewModel from './ViewModel';
 
 const RegisterScreen = () => {
 
-  const { name, apellidoPaterno, apellidoMaterno, password, email, onChange, register} = RegisterViewModel();
+  const { name, app, apm, date, email, password, onChange, register} = RegisterViewModel();
   
   return (
     <View style={styles.container}>
@@ -19,14 +19,20 @@ const RegisterScreen = () => {
       />
       <TextInput
         placeholder="Apellido Paterno"
-        value={apellidoPaterno}
-        onChangeText={(text) => onChange('apellidoPaterno', text)}
+        value={app}
+        onChangeText={(text) => onChange('app', text)}
         style={styles.input}
       />
       <TextInput
         placeholder="Apellido Materno"
-        value={apellidoMaterno}
-        onChangeText={(text) => onChange('apellidoMaterno', text)}
+        value={apm}
+        onChangeText={(text) => onChange('apm', text)}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="fecha"
+        value={date}
+        onChangeText={(text) => onChange('date', text)}
         style={styles.input}
       />
       <TextInput
@@ -41,7 +47,6 @@ const RegisterScreen = () => {
         onChangeText={(text) => onChange('password', text)}
         secureTextEntry={true}
         style={styles.input}
-        secureTextEntry={true}
       />
 
       <Button title="Guardar" onPress={ () => register() } />

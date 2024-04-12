@@ -6,8 +6,9 @@ const RegisterViewModel = () => {
 
     const [values, setValues] = useState({
         name:'',
-        apellidoPaterno:'',
-        apellidoMaterno:'',
+        app:'',
+        apm:'',
+        date:'',
         email:'',
         password:''
     });

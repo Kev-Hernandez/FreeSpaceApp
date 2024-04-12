@@ -8,7 +8,7 @@ export class AuthRepositoryImpl implements AuthRepository {
     async register(user: User) {
         console.log(user);
         try {
-            const response = await Api.post<ResponseApi>('/users', user);
+            const response = await Api.post<ResponseApi>('/usuarios/profe', user);
             console.log('RESPONSE ', JSON.stringify(response.data));
             return Promise.resolve({error: undefined, result: response.data});
         } catch (error) {
@@ -20,7 +20,7 @@ export class AuthRepositoryImpl implements AuthRepository {
 
     async login(email:string, password: string): Promise<ResponseApi>{
         try {
-            const response = await Api.post<ResponseApi>('/users/login', {
+            const response = await Api.post<ResponseApi>('/usuarios/login', {
                 email: email,
                 password: password
             });
