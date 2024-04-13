@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Button, Alert, ImageBackground, StyleSheet, SafeAreaView, Text } from 'react-native';
-import ProfileInfoViewModel from './ViewModel';
+import { View, Text, ImageBackground, StyleSheet, SafeAreaView, Alert } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfileInfoViewModel from '../screen/Profile/Info/ViewModel';
 import { StackScreenProps } from '@react-navigation/stack';
-import { RootSatckParamList } from '../../../../../App';
+import { RootSatckParamList } from '../../../App';
 
-interface Props extends StackScreenProps<RootSatckParamList, 'Profile'> {};
+// Define las pantallas para cada pestaña
+const Tab = createBottomTabNavigator();
+
+interface Props extends StackScreenProps<RootSatckParamList, 'ProfileInfoScreen'> {};
 
 const ProfileInfoScreen = ({ navigation, route }: Props) => {
     const { removeSession } = ProfileInfoViewModel();
@@ -45,18 +49,28 @@ const ProfileInfoScreen = ({ navigation, route }: Props) => {
             resizeMode="cover"
         >
             <SafeAreaView style={styles.safeAreaView}>
-            <Text style={styles.title}>MI PERFIL</Text>
-                <View style={styles.container}>
-                    <View style={styles.buttonContainer}>
-                        <Button
-                            onPress={handleLogout}
-                            title='Cerrar Sesión'
-                            color="#841584"
-                        />
-                    </View>
-                </View>
+                <Tab.Navigator>
+                    <Tab.Screen name="Spaces" component={SpacesScreen} />
+                    <Tab.Screen name="Logout" component={LogoutScreen} />
+                </Tab.Navigator>
             </SafeAreaView>
         </ImageBackground>
+    );
+};
+
+const SpacesScreen = () => {
+    return (
+        <View style={styles.container}>
+            <Text>Esta es la pantalla de Espacios Disponibles</Text>
+        </View>
+    );
+};
+
+const LogoutScreen = () => {
+    return (
+        <View style={styles.container}>
+            <Text>Esta es la pantalla de Cerrar Sesión</Text>
+        </View>
     );
 };
 
@@ -71,25 +85,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    buttonContainer: {
-        backgroundColor: 'white',
-        marginVertical: 10,
-        width: '80%', // Ajusta el ancho del contenedor del botón
-        borderRadius: 20, // Añade bordes redondeados al contenedor del botón
-        overflow: 'hidden', // Oculta cualquier desbordamiento de contenido del botón
-    },
     safeAreaView: {
         flex: 1,
-    },
-    title:{
-        paddingTop: 'auto',
-        fontWeight:'bold',
-        fontSize:30,
-        color: 'black',
-        textShadowOffset: {width: -1, height: 2}, 
-        textShadowRadius: 5,
-        textShadowColor: 'white',
-        textAlign: 'center',
     },
 });
 

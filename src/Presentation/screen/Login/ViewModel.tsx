@@ -27,9 +27,9 @@ const LoginViewModel = () => {
             if(!response.success){
                 seterrorMessage(response.message);
             }else{
-                
                 console.log('GUARDA LA DATA');
                 await SaveUserCase(response.data);
+                
             }
         }
     }

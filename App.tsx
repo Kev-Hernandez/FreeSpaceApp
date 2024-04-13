@@ -11,16 +11,18 @@ import ProfileInfoScreen from './src/Presentation/screen/Profile/Info/ProfileInf
 import SpaceScreen from './src/Presentation/screen/Space/SpaceScreen';
 import SecondSpaceScreen from './src/Presentation/screen/Space/SecondSpaceScreen';
 import FormularioScreen from './src/Presentation/screen/Space/FormularioScreen';
+import Tabs from './src/Presentation/screen/Profile/Info/Tabs';
 
 export type RootSatckParamList = {
   Onboarding: undefined;
   LoginScreen: undefined;
   Register: undefined;
   ProductList: undefined;
-  ProfileInfoScreen: undefined;
+  Profile: undefined;
   Space: undefined;
   SecondSpace: undefined;
   FormularioScreen:undefined;
+  Tabs: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootSatckParamList>();
@@ -30,14 +32,15 @@ export default function App() {
     <GestureHandlerRootView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Onboarding">
-          <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{headerShown:false}} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}}/>
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="ProductList" component={ProductList} />
-          <Stack.Screen name="ProfileInfoScreen" component={ProfileInfoScreen} />
-          <Stack.Screen name="Space" component={SpaceScreen} />
-          <Stack.Screen name='SecondSpace' component={SecondSpaceScreen}/>
-          <Stack.Screen name='FormularioScreen' component={FormularioScreen}/>
+          <Stack.Screen name="Profile" component={ProfileInfoScreen} options={{headerShown:false}}/>
+          <Stack.Screen name="Space" component={SpaceScreen}options={{headerShown:false}} />
+          <Stack.Screen name='SecondSpace' component={SecondSpaceScreen}options={{headerShown:false}}/>
+          <Stack.Screen name='FormularioScreen' component={FormularioScreen}options={{headerShown:false}}/>
+          <Stack.Screen name="Tabs" component={Tabs} options={{headerShown:false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

@@ -23,4 +23,18 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
         paddingHorizontal: 10,
     },
+    registerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    registerText: {
+        fontSize: 15,
+        color: 'white',
+    },
+    link: {
+        color: "cyan", 
+        textDecorationLine: 'underline',
+    },
 });

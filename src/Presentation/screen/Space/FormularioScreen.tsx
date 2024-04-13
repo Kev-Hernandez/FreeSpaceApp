@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, ImageBackground, SafeAreaView } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const FormularioScreen = ({ navigation }) => {
@@ -47,7 +47,7 @@ const FormularioScreen = ({ navigation }) => {
           text: 'Confirmar',
           onPress: () => {
             // Aquí puedes agregar la lógica para guardar las fechas y redirigir a SpaceScreen
-            navigation.navigate('Space');
+            navigation.navigate('Tabs');
           },
         },
       ],
@@ -57,32 +57,36 @@ const FormularioScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require('../../../../assets/fondoback.png')} // Ruta de tu imagen de fondo
-      style={styles.backgroundImage} // Estilo para el contenedor principal
-    >
-      <View style={styles.container}>
-        <TouchableOpacity onPress={showStartDatePicker} style={styles.datePickerButton}>
-          <Text style={styles.datePickerButtonText}>Seleccionar Fecha de Inicio: {startDate.toDateString()}</Text>
-        </TouchableOpacity>
-        <DateTimePickerModal
-          isVisible={isStartDatePickerVisible}
-          mode="date"
-          onConfirm={handleStartDateConfirm}
-          onCancel={hideStartDatePicker}
-        />
-        <TouchableOpacity onPress={showEndDatePicker} style={styles.datePickerButton}>
-          <Text style={styles.datePickerButtonText}>Seleccionar Fecha de Término: {endDate.toDateString()}</Text>
-        </TouchableOpacity>
-        <DateTimePickerModal
-          isVisible={isEndDatePickerVisible}
-          mode="date"
-          onConfirm={handleEndDateConfirm}
-          onCancel={hideEndDatePicker}
-        />
-        <TouchableOpacity onPress={handleConfirmation} style={styles.confirmationButton}>
-          <Text style={styles.confirmationButtonText}>Confirmar Reserva</Text>
-        </TouchableOpacity>
-      </View>
+        source={require('../../../../assets/fondoback.png')} // Ruta de tu imagen de fondo
+        style={styles.backgroundImage} // Estilo para el contenedor principal
+        resizeMode="cover"
+      >
+    <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <TouchableOpacity onPress={showStartDatePicker} style={styles.datePickerButton}>
+            <Text style={styles.datePickerButtonText}>Seleccionar Fecha de Inicio: {startDate.toDateString()}</Text>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isStartDatePickerVisible}
+            mode="date"
+            onConfirm={handleStartDateConfirm}
+            onCancel={hideStartDatePicker}
+          />
+          <TouchableOpacity onPress={showEndDatePicker} style={styles.datePickerButton}>
+            <Text style={styles.datePickerButtonText}>Seleccionar Fecha de Término: {endDate.toDateString()}</Text>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isEndDatePickerVisible}
+            mode="date"
+            onConfirm={handleEndDateConfirm}
+            onCancel={hideEndDatePicker}
+          />
+          <TouchableOpacity onPress={handleConfirmation} style={styles.confirmationButton}>
+            <Text style={styles.confirmationButtonText}>Confirmar Reserva</Text>
+          </TouchableOpacity>
+        </View>
+      
+    </SafeAreaView>
     </ImageBackground>
   );
 };

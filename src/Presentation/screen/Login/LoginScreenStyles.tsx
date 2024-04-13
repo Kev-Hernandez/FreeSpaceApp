@@ -3,23 +3,29 @@ import { MyColors } from '../../theme/AppTheme';
 
 export const styles = StyleSheet.create({
     container: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
     },
     label: {
-        fontSize: 16,
+        fontSize: 18,
         marginBottom: 5,
-        color: '#333',
+        color: 'white',
+        textDecorationStyle: 'double',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 5,
+    
     },
     input: {
-        width: '100%',
+        width: 'auto',
         height: 40,
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        marginBottom: 15,
-        paddingHorizontal: 10,
+        borderColor: 'black',
+        borderRadius: 10,
+        marginBottom: 20,
+        paddingHorizontal: 20,
         backgroundColor: 'white',
     },
     buttonContainer: {
@@ -51,19 +57,22 @@ export const styles = StyleSheet.create({
         marginTop: 10,
     },
     registerText: {
-        fontSize: 16,
-        color: '#333',
+        fontSize: 15,
+        color: 'white',
     },
     link: {
-        color: "white", 
+        color: "cyan", 
         textDecorationLine: 'underline',
     },
     title:{
-        
+        paddingTop: 'auto',
         fontWeight:'bold',
         fontSize:30,
         color: 'black',
-        
+        textShadowOffset: {width: -1, height: 2}, 
+        textShadowRadius: 5,
+        textShadowColor: 'white',
+        textAlign: 'center',
     },
     linearGradient: {
         flex: 1,
@@ -78,6 +87,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
-    
+      safeAreaView:{
+        flex: 1,
+        backgroundColor: 'transparent',
+      }
     
 });

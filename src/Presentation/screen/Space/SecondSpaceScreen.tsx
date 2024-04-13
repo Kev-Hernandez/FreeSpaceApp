@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { View, TouchableOpacity, ImageBackground, ScrollView, StyleSheet, Dimensions, Alert, Button, GestureResponderEvent, Image } from 'react-native';
+import { View, TouchableOpacity, ImageBackground, ScrollView, StyleSheet, Dimensions, Alert, Button, GestureResponderEvent, Image, SafeAreaView, Text } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootSatckParamList } from '../../../../App';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 
 interface Props extends StackScreenProps<RootSatckParamList, "SecondSpace"> {};
 
-const SpaceScreen = ({ navigation }: Props) => {
+const SecondSpaceScreen = ({ navigation }: Props) => {
 
     const handleNavigateToSpaces = () => {
-        navigation.navigate('Space'); // Reemplaza 'SpacesScreen' con el nombre correcto de tu pantalla de Spaces
+        navigation.navigate('Tabs'); // Reemplaza 'SpacesScreen' con el nombre correcto de tu pantalla de Spaces
     };
 
     // Dimensiones de la ventana
@@ -96,11 +96,12 @@ const SpaceScreen = ({ navigation }: Props) => {
 
     return (
         <ImageBackground
-            source={require('../../../../assets/fondoback.png')} // Ruta de la imagen de fondo
-            style={styles.backgroundImage} // Estilos para el contenedor principal
-            resizeMode="cover" // Ajusta la imagen para que cubra el contenedor
-        >
-            <View style={styles.container}>
+                source={require('../../../../assets/fondoback.png')} // Ruta de la imagen de fondo
+                style={styles.backgroundImage} // Estilos para el contenedor principal
+                resizeMode="cover" // Ajusta la imagen para que cubra el contenedor
+            >
+        <SafeAreaView style={{ flex: 1 }}>
+            
                 <ScrollView
                     style={styles.scrollView}
                     contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }}
@@ -112,6 +113,8 @@ const SpaceScreen = ({ navigation }: Props) => {
                     showsVerticalScrollIndicator={false}
                     bouncesZoom // Permite el rebote al hacer zoom
                 >
+                    <Text style={styles.title}>ESTAS EN EL SEGUNDO PISO</Text>
+                    <Text style={styles.title}>TOCA EL ESPACIO QUE DESEAS USAR</Text>
                     <PanGestureHandler>
                         <ImageBackground
                             source={require('../../../../assets/aulas.png')}
@@ -148,17 +151,17 @@ const SpaceScreen = ({ navigation }: Props) => {
                             />
                             {/* Zona clickeable para el rectángulo 3 */}
                             <TouchableOpacity
-                                 onPress={() => reservationState['Rectángulo 3'] ? handleRedRectanglePress('Rectángulo 3') : handleRectanglePress('Rectángulo 3')}
-                                 style={[
-                                     styles.rectangleContainer,
-                                     { 
-                                         left: 0, 
-                                         top: adjustedImageHeight / 2, 
-                                         width: adjustedImageWidth / 2, 
-                                         height: adjustedImageHeight / 2, 
-                                         backgroundColor: reservationState['Rectángulo 3'] ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 255, 0, 0.5)' 
-                                     },
-                                 ]}
+                                onPress={() => reservationState['Rectángulo 3'] ? handleRedRectanglePress('Rectángulo 3') : handleRectanglePress('Rectángulo 3')}
+                                style={[
+                                    styles.rectangleContainer,
+                                    { 
+                                        left: 0, 
+                                        top: adjustedImageHeight / 2, 
+                                        width: adjustedImageWidth / 2, 
+                                        height: adjustedImageHeight / 2, 
+                                        backgroundColor: reservationState['Rectángulo 3'] ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 255, 0, 0.5)' 
+                                    },
+                                ]}
                             />
                             {/* Zona clickeable para el rectángulo 4 */}
                             <TouchableOpacity
@@ -177,15 +180,15 @@ const SpaceScreen = ({ navigation }: Props) => {
                         </ImageBackground>
                     </PanGestureHandler>
                 </ScrollView>
-                <View style={styles.buttonContainer}>
-                    <Button
-                        onPress={handleNavigateToSpaces}
-                        title='Regresar a Primer Piso'
-                        color="#841584"
-                    />
-                </View>
+            <View style={styles.buttonContainer}>
+                <Button
+                    onPress={handleNavigateToSpaces}
+                    title='Regresar a Primer Piso'
+                    color="#841584"
+                />
             </View>
-        </ImageBackground>
+        </SafeAreaView>
+    </ImageBackground>
     );
 };
 
@@ -214,13 +217,26 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         position: 'absolute',
-        bottom: 20, // Ajusta la posición vertical del contenedor del botón
+        bottom: 80, // Ajusta la posición vertical del contenedor del botón
+        alignSelf: 'center', // Alinea el contenedor de botones al centro horizontalmente
         backgroundColor: 'white',
-        marginVertical: 10,
+        marginVertical: 20,
         width: '80%', // Ajusta el ancho del contenedor del botón
         borderRadius: 20, // Añade bordes redondeados al contenedor del botón
         overflow: 'hidden', // Oculta cualquier desbordamiento de contenido del botón
     },
+    button: {
+        marginVertical: 10, // Ajusta el espacio vertical entre botones
+    },
+    title:{
+        fontWeight:'bold',
+        fontSize:18,
+        color: 'white',
+        textShadowRadius: 5,
+        textShadowColor: 'black',
+        textAlign: 'center',
+        paddingBottom:10,
+    },
 });
 
-export default SpaceScreen;
+export default SecondSpaceScreen;
